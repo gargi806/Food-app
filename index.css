@@ -1,3 +1,271 @@
-#yes{
-    color:blueviolet
+/* Select all CSS */
+*{
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
 }
+
+/* Header CSS */
+.head{
+    display: flex;
+    justify-content: space-between;
+    margin: 10px;
+    width: auto;
+    border: 1px solid black;;
+    border-radius: 5px;
+    box-shadow: -1px 4px 20px 14px rgba(0, 0, 0, 0.2);
+    color: rgb(148, 100, 100);
+    font-weight: bold;
+}
+
+
+.logo{
+    padding-left: 10px;
+    width: 120px;
+}
+
+.nav-items{   
+    padding: 15px;
+    width: auto;
+}
+
+.nav-items > ul{
+    list-style-type: none;
+    display: flex;
+    
+}
+
+.nav-items > ul > li{
+    padding: 10px 10px 0 0;
+    font-size: large;
+    cursor: pointer;
+    margin: 10px;
+}
+
+
+/* Body CSS */
+
+.topRated{
+    margin: 10px;   
+    width: 150px;
+}
+
+.topRated-btn{
+    border: 1px solid rgb(199, 197, 197);
+    cursor: pointer;
+    padding: 10px 10px;
+    border-radius: 50px;
+    background-color: #7a0f0f0d;
+    color: #222;
+    font-size: 14px;
+   
+}
+
+.search{
+    padding: 10px;
+    margin: 20px;
+    background-color: rgb(221, 208, 208);
+    border-radius: 18px;
+    width: 250px;
+    padding-left: 20px;
+    margin-left: 40px;
+}
+
+.search-input{
+    margin: 10px;
+    width: 220px;
+    padding: 15px;
+    border-radius: 17px;
+    border-color: rgb(250, 250, 248);
+    border: 1px solid white;
+    background-color: #faf8f80d;
+    
+}
+
+ .search-btn{
+border: 1px solid white;
+cursor: pointer;
+padding: 10px 10px;
+border-radius: 50px;
+background-color: #faf8f80d;
+color: #222;
+font-size: 14px;
+font-weight: 500;
+
+}
+
+.res-container{
+    width: auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content:center;
+}
+
+.res-card{
+    width: 200px;
+    border-radius: 5px;
+    box-shadow: -1px 4px 20px 14px rgba(0, 0, 0, 0.2);
+    padding: 10px;
+    margin: 20px;
+    cursor: pointer;
+}
+
+.res-card > img{
+    width: 100%;
+    border-radius: 10px;
+}
+
+.shimmer-container{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.shimmer-card{
+    width: 200px;
+    height: 300px;
+    background-color: #f0f0f0;
+    margin: 20px;
+    padding:20px;
+
+}
+
+.btn{
+    padding: 8px 10px;
+    margin: 10px;
+    cursor : pointer;
+    font-size: large;
+    font-weight: bold;
+    color: rgb(78, 76, 76);
+    background-color: rgb(223, 159, 159);
+    border: 1px solid rgb(141, 56, 56);
+}
+
+.filter{
+    display:flex;
+   
+}
+
+
+.filter-btn{
+ border: 1px solid white;
+cursor: pointer;
+background-color: #d6b3b3;
+color: #222;
+margin: 10px;
+padding: 10px;
+
+}
+
+.restaurant-info{
+   
+   width: 70%;
+   padding: 20px;
+   margin: auto;
+   background-color: rgb(224, 225, 220);
+   
+}
+
+
+.restro{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background-color: rgb(38, 136, 51);
+    color: #f0f0f0;
+    width: 100%;
+    height: 240px;
+
+}
+
+
+
+.menu-img{
+    width: 280px;
+    height: 190px;
+    border-radius: 15px;
+    padding: 10px;
+    margin:10px;
+
+}
+.res-name{
+
+    font-size: 22px;
+    font-weight: bolder;
+    color: white;
+    
+    
+}
+
+.resdetails{
+ 
+     padding:10px;
+     
+     line-height: 25px;
+
+     
+
+}
+.res-other{
+    
+    
+    font-size: 15px;
+    font-weight: bold;
+    padding: 20px;
+}
+
+.res-ratings{
+   
+    padding: 10px;
+    margin-right: 10px;
+    line-height: 30px;
+
+    
+}
+
+hr.solid {
+    border-top: 3px solid #bbb;
+    height: 58px;
+  }
+
+
+.res-other>ul>li{
+    margin: 0px 5px 10px 5px;
+}
+
+
+
+.oneCard{
+    
+    display: flex;
+    justify-content: space-between;
+    padding:10px;
+    margin:10px;
+
+}
+
+.card-info{
+width: 700px;
+padding:10px;
+}
+
+.cardDivider {
+    border-top: 3px solid #bbb;
+  }
+
+
+
+.item-img{
+   float: right;
+   margin-top: 20px;;
+    width: 100px;
+    height:80px;
+    border-radius: 5px;
+}
+
+
+
+
+
+
+
+
