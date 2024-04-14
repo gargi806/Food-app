@@ -4,11 +4,12 @@ import { SWIGGY_RES_MENU } from "../utils/constants";
 import { useParams } from "react-router-dom";
 import ResMenuInfo from "./ResMenuInfo";
 import ResOffers from "./ResOffers";
-import ResMenuCategories from "./ResMenuCategories";
+//import ResMenuCategories from "./ResMenuCategories";
 
 const RestaurantMenu = () => {
   const [resInfo, setResInfo] = useState(null);
-  const [resMenuCategories, setResMenuCategories] = useState([]);
+  const [resOffers, setResOffers] = useState();
+  const [resMenu, setResMenu] = useState([]);
 
   const { resId } = useParams();
 
@@ -23,8 +24,11 @@ const RestaurantMenu = () => {
     //console.log(json);
 
     setResInfo(json?.data);
-    setResMenuCategories(
-      json?.data?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards
+    setResOffers(
+      resInfo?.cards[3]?.card?.card?.gridElements?.infoWithStyle?.offers
+    );
+    setResMenu(
+      json?.data?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards[2]
     );
   };
 
@@ -61,10 +65,11 @@ const RestaurantMenu = () => {
 
   return (
     <div className="restaurant-info">
-      <ResMenuInfo restroInfo={resInfo?.cards[0]?.card?.card?.info} />
+      <ResMenuInfo restroInfo={resInfo?.cards[2]?.card?.card?.info} />
       <ResOffers
         restroOffer={
-          resInfo?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.offers[0]
+          resInfo?.cards[3]?.card?.card?.gridElements?.infoWithStyle?.offers[0]
+            .info
         }
       />
 
@@ -79,15 +84,7 @@ const RestaurantMenu = () => {
           <h1>Menu</h1>
         </div>
 
-        <div className="menu-container">
-          <ResMenuCategories
-            restroCategory={
-              resInfo?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards[1]
-                .card?.card
-            }
-          />
-          ;
-        </div>
+        <div className="menu-container"></div>
       </div>
     </div>
   );

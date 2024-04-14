@@ -194,7 +194,7 @@
     width: 70%;
     padding: 20px;
     margin: auto;
-    background-color: rgb(224, 225, 220);
+    
     
     }
     
@@ -217,13 +217,13 @@
     margin:10px;
     
     }
-    .res-name{
+   /* .res-name{
     
         font-size: 22px;
         font-weight: bolder;
         color: white;
     
-    }
+    }*/
     
     .resdetails{
     
@@ -251,6 +251,7 @@
     hr.solid {
     border-top: 3px solid #bbb;
     height: 58px;
+    color:#222
     }
     
     .res-other>ul>li{
@@ -283,10 +284,10 @@
     border-radius: 5px;
     }
     
-    .offer-box{
+    /*.offer-box{
     padding: 10px;
     margin: 10px;
     width: 280px;
     height: 100px;
     border: 1px solid black;
-    }
+    }*/

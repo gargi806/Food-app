@@ -53,7 +53,7 @@ const BodyComponent = () => {
               console.log(searchText);
 
               const filteredRestaurant = listOfRestaurants.filter((res) =>
-                res.data.name.toLowerCase().includes(searchText.toLowerCase())
+                res.info.name.toLowerCase().includes(searchText.toLowerCase())
               );
               setFilteredRestaurants(filteredRestaurant);
             }}
@@ -67,8 +67,9 @@ const BodyComponent = () => {
           "
             onClick={() => {
               const filteredList = listOfRestaurants.filter(
-                (res) => res.data.avgRating > 4
+                (res) => res.info.avgRating > 4
               );
+              console.log("clicked");
               setListOfRestaurants(filteredList);
             }}
           >
