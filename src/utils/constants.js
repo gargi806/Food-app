@@ -11,7 +11,7 @@ export const OFFER_LOGO_URL =
   "https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_96,h_96/offers/deal-of-day";
 
 export const SWIGGY_RES_MENU =
-  "https://www.swiggy.com/dapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=12.9351929&lng=77.62448069999999&restaurantId=10576&catalog_qa=undefined&isMenuUx4=true&submitAction=ENTER";
+  "https://www.swiggy.com/dapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=12.9351929&lng=77.62448069999999&restaurantId=393840&catalog_qa=undefined&isMenuUx4=true&submitAction=ENTER";
 
 export const MENU_ITEM_IMAGE_URL =
   "https://res.cloudinary.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_208,h_208,c_fit/";

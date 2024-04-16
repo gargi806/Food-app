@@ -25,14 +25,16 @@ const ResMenuInfo = (props) => {
       </div>
 
       <div className="pt-6 ">
-        <p className="text-2xl font-semibold p-2">{name}</p>
+        <p className="text-3xl font-semibold p-2 text-red-800 underline">
+          {name}
+        </p>
         <p className="res-cuisines">{cuisines.join(",")}</p>
         <p className="res-locality">{locality}</p>
       </div>
 
       <hr className="solid"></hr>
 
-      <div className="pt-12 ">
+      <div className="pt-14 text-lg ">
         <ul>
           <li>{[sla.slaString]} </li>
           <li>{costForTwoMessage} </li>
@@ -41,8 +43,8 @@ const ResMenuInfo = (props) => {
 
       <hr className="solid"></hr>
 
-      <div className="pt-8">
-        <p>
+      <div className="pt-10 text-lg  text-blue-800">
+        <p className="">
           {" "}
           <FaStar />
           {avgRating}{" "}
