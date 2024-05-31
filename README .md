@@ -482,6 +482,7 @@ setResMenuCategories(bothVegNonVegMenu);
 };
 
 return (
+
 <div className="restaurant-info">
 <ResMenuInfo restroInfo={resInfo?.cards[2]?.card?.card?.info} />
 <ResOffers
@@ -521,3 +522,9 @@ resInfo?.cards[3]?.card?.card?.gridElements?.infoWithStyle?.offers[0]
 .info
 }
 />
+
+ <ul>
+            {itemCards.map((item) => (
+              <li key={item.card.info.id}>{item.card.info.name}</li>
+            ))}
+          </ul>

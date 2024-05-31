@@ -4,7 +4,7 @@ import Shimmer from "./shimmer";
 import { useParams } from "react-router-dom";
 import ResMenuInfo from "./ResMenuInfo";
 import ResOffers from "./ResOffers";
-//import ResMenuCategories from "./ResMenuCategories";
+import ResMenuCategories from "./ResMenuCategories";
 
 const RestaurantMenu = () => {
   const [resInfo, setResInfo] = useState(null); //data hasn't been fetched yet or is in the process of being fetched.
@@ -39,38 +39,22 @@ const RestaurantMenu = () => {
   const { itemCards } =
     resInfo?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards[1]?.card?.card;
 
-  //console.log(resMenuCategories);
+  const categories =
+    resInfo?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards?.filter(
+      (c) =>
+        c.card?.card?.["@type"] ===
+        "type.googleapis.com/swiggy.presentation.food.v2.ItemCategory"
+    );
 
-  const btnVegHandler = (e) => {
-    console.log("resmenu cat before filter", resMenuCategories);
-    if (e.target.checked) {
-      let filteredCategories = [];
-      resMenuCategories.forEach((category) => {
-        let { title, itemCards } = category?.card?.card;
-        if (itemCards !== undefined) {
-          itemCards = itemCards.filter((item) => item?.card?.info?.isVeg);
-          //console.log(itemCards);
-          filteredCategories.push({
-            card: { card: { title: title, itemCards: itemCards } },
-          });
-          console.log("resmenu cat after filter", filteredCategories);
-        }
-      });
-      setResMenuCategories(filteredCategories);
-    } else {
-      console.log("inside else");
-      let i = 0;
-      if (resInfo?.data?.cards.length === 4) i = 3;
-      else i = 2;
-      const bothVegNonVegMenu =
-        resInfo.data.cards[i].groupedCard.cardGroupMap.REGULAR.cards;
-      setResMenuCategories(bothVegNonVegMenu);
-    }
-  };
+  console.log(categories);
 
   return (
     <div className="restaurant-info">
       <ResMenuInfo restroInfo={resInfo?.cards[2]?.card?.card?.info} />
+      <h1 className="text-2xl text-slate-800 font-bold pt-6 mt-8 ml-6">
+        Deals for you
+      </h1>
+
       <ResOffers
         restroOffer={
           resInfo?.cards[3]?.card?.card?.gridElements?.infoWithStyle?.offers[0]
@@ -78,26 +62,21 @@ const RestaurantMenu = () => {
         }
       />
 
-      <div className="veg-box">
-        <label htmlFor="veg-only-chkbox">Veg only</label>
-        &nbsp;
-        <input type="checkbox" id="veg-only-chkbox" onChange={btnVegHandler} />
+      <hr className=" m-2 p-2 h-2 bg-slate-200"></hr>
+
+      <div className="text-center">
+        <h1 className="font-bold m-2 p-2 text-xl underline ">Menu</h1>
       </div>
 
-      <div className="menu">
-        <div className="header-menu">
-          <h1>Menu</h1>
+      {/*   categories accordian*/}
 
-          <ul>
-            {itemCards ? (
-              itemCards.map((item) => (
-                <li key={item.card.info.id}>{item.card.info.name}</li>
-              ))
-            ) : (
-              <li>No items available</li>
-            )}
-          </ul>
-        </div>
+      <div>
+        {categories.map((category) => (
+          <ResMenuCategories
+            key={category?.card?.card?.title}
+            data={category?.card?.card}
+          />
+        ))}
       </div>
     </div>
   );
