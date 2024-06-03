@@ -1,11 +1,12 @@
 import ItemList from "./ItemList";
 import { useState } from "react";
 
-const ResMenuCategories = ({ data }) => {
-  const [showItems, setShowItems] = useState(false);
+const ResMenuCategories = ({ data, showItems, setShowIndex }) => {
   const handleClick = () => {
-    setShowItems(!showItems);
+    console.log("clicked");
+    setShowIndex();
   };
+
   return (
     <div>
       <div

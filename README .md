@@ -367,161 +367,110 @@ lazy loading is loading page when needed. so when we click on a button then the 
 
 const Grocery = lazy(()=> import("./componnets/grocery));
 
-RES LIST:OLD
-"https://www.swiggy.com/dapi/restaurants/list/v5?lat=26.9124336&lng=75.7872709&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"
+👍 Higher order components: function that takes a component as input and then enhances or modifies it and returns a new component. (building promoted feature)
 
-CDN:OLD
-"https://res.cloudinary.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_508,h_320,c_fill/"
+## for categories:
 
-    .res-container{
+1. for fetching all the categories data u have to use filter method on the cards array.
 
-    width: auto;
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: center;
-    align-self: stretch;
+const categories = resInfo?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards?.filter(
+(c) =>
+c.card?.card?.["@type"] === "type.googleapis.com/swiggy.presentation.food.v2.ItemCategory";
+);
 
-    }
+2.  after fetching data u have to map over these categories.
 
-    .res-card{
+categories.map((category) =>(<ResMenuCategories data={category.card.card}/>)
 
-     /* Adjust the width as desired */
-     width:250px;
-    border-radius: 5px;
-    box-shadow: -1px 5px 10px 5px rgba(42, 42, 42, 0.2);
-    padding: 10px;
-    margin: 20px;
-    cursor: pointer;
-    word-wrap: break-word;
-    font-weight: bold;
+3.  resMenucategories contains a title, accordian, item list.
 
+4.  we will do the same for item list like we did for res info or res menu categories, where we mention that it is a separate component and from where it is fetching data : <itemList items={data.itemCards}/>
 
-    }
+5.  make new component item list and use map again and dispaly your title, price ,descriptipn,img etc.
 
-    .res-card:hover {
-        transform: scale(1.03);
-      }
+6.  we want to make the categories clickable , to do that we use on click method . onClick={handleClick}.
+    handle click is a function that will show/hide the list
 
+7.  to make the categories collapsible we need to change the state of the item list . useState
+    { showItems && <itemList items={data.itemCards}/>}
+    (trying to conditionally render itemlist based on the value of showitems)
 
-    .res-card > img{
-    max-width: 100%; /* Make sure the image does not exceed card width */
-    max-height: 100%;
-    border-radius: 20px;
-    display: flex; /* Use flexbox layout */
-    justify-content: center; /* Center content horizontally */
-    align-items: center;
-    padding-bottom: 20px;
-    }
+\*\* all the react applications have two layers : UI layer and data layer. Data layer consists of state, props,local variables. UI layer is powered by data layer.UI layer mostly consists of JSX.
 
-[restaurant menu old]
-import { useEffect, useState } from "react";
-import Shimmer from "./shimmer";
-import { SWIGGY_RES_MENU } from "../utils/constants";
-import { useParams } from "react-router-dom";
-import ResMenuInfo from "./ResMenuInfo";
-import ResOffers from "./ResOffers";
-//import ResMenuCategories from "./ResMenuCategories";
+## controlled and uncontrolled components :
 
-const RestaurantMenu = () => {
+An uncontrolled component is an input element that manages its own state internally. Instead of using the React state
+It’s useful to consider components as “controlled” (driven by props) or “uncontrolled” (driven by state).
+
+## Lifting the state up:
+
+Sometimes, you want the state of two components to always change together. To do it, remove state from both of them, move it to their closest common parent, and then pass it down to them via props. This is known as lifting state up,
+
+But now let’s say you want to change it so that only one panel is expanded at any given time. With that design, expanding the second panel should collapse the first one. How would you do that?
+
+To coordinate these two panels, you need to “lift their state up” to a parent component in three steps:
+
+1. Remove state from the child components.
+2. Pass hardcoded data from the common parent.
+3. Add state to the common parent and pass it down together with the event handlers.
+   This will allow the Accordion component to coordinate both Panels and only expand one at a time.
+
+recap:
+When you want to coordinate two components, move their state to their common parent.
+Then pass the information down through props from their common parent.
+Finally, pass the event handlers down so that the children can change the parent’s state.
+
+## props drilling:
+
+Usually, you will pass information from a parent component to a child component via props. But passing props can become verbose and inconvenient if you have to pass them through many components in the middle, or if many components in your app need the same information.
+
+Context lets a parent component provide data to the entire tree below it.
+
+use cases: logged in , dark mode
+
+### res menu
+
+ <ul>
+            {itemCards ? (
+              itemCards.map((item) => (
+                <li
+                  className="text-lg mb-6 p-2 bg-slate-100 rounded-xl"
+                  key={item.card.info.id}
+                >
+                  <h2 className="font-semibold mb-2 p-2">
+                    {item.card.info.name}
+                  </h2>
+                  <p className="font-thin mb-2 pl-4">
+                    {item.card.info.description}
+                  </p>
+                  <p className="font-normal mb-2 pl-4">
+                    {"Rs - "} {item.card.info.defaultPrice / 100}
+                  </p>
+                </li>
+              ))
+            ) : (
+              <li>No items available</li>
+            )}
+          </ul>
+
+## use state:
+
 const [resInfo, setResInfo] = useState(null); //data hasn't been fetched yet or is in the process of being fetched.
-const [resOffers, setResOffers] = useState(); //it could be assigned an array, an object, or any other type of data later on.
-const [resMenu, setResMenu] = useState([]); //initial state is no menu items, and you expect an array of menu items to be loaded later.
 
-const { resId } = useParams();
+const [resOffers, setResOffers] = useState(); //it could be assigned an array, an object, or any other type of data later on.
+
+const [resMenu, setResMenu] = useState([]); //initial state is no menu items, and you expect an array of menu items to be loaded later.
 
 //use effect takes two arguments, call back function and dependency array. no dependency array means data will be called again and again, empty array means called once.
 useEffect(() => {
 fetchMenu();
 }, []);
 
-const fetchMenu = async () => {
-const data = await fetch(SWIGGY_RES_MENU + resId);
-const json = await data.json();
-
-    //console.log(json);
-
-    setResInfo(json?.data);
-    setResOffers(
-      resInfo?.cards[3]?.card?.card?.gridElements?.infoWithStyle?.offers
-    );
-    setResMenu(
-      json?.data?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards[1]?.card?.card);
-
-};
-
-if (resInfo === null) return <Shimmer />;
-
-//console.log(resMenuCategories);
-
-const btnVegHandler = (e) => {
-//console.log("resmenu cat before filter", resMenuCategories);
-if (e.target.checked) {
-let filteredCategories = [];
-resMenuCategories.forEach((category) => {
-let { title, itemCards } = category?.card?.card;
-if (itemCards !== undefined) {
-itemCards = itemCards.filter((item) => item?.card?.info?.isVeg);
-//console.log(itemCards);
-filteredCategories.push({
-card: { card: { title: title, itemCards: itemCards } },
-});
-console.log("resmenu cat after filter", filteredCategories);
-}
-});
-setResMenuCategories(filteredCategories);
-} else {
-console.log("inside else");
-let i = 0;
-if (resInfo?.data?.cards.length === 4) i = 3;
-else i = 2;
-const bothVegNonVegMenu =
-resInfo.data.cards[i].groupedCard.cardGroupMap.REGULAR.cards;
-setResMenuCategories(bothVegNonVegMenu);
-}
-};
-
-return (
-
-<div className="restaurant-info">
-<ResMenuInfo restroInfo={resInfo?.cards[2]?.card?.card?.info} />
-<ResOffers
-restroOffer={
-resInfo?.cards[3]?.card?.card?.gridElements?.infoWithStyle?.offers[0]
-.info
-}
-/>
-
       <div className="veg-box">
         <label htmlFor="veg-only-chkbox">Veg only</label>
         &nbsp;
         <input type="checkbox" id="veg-only-chkbox" onChange={btnVegHandler} />
       </div>
-
-      <div className="menu">
-        <div className="header-menu">
-          <h1>Menu</h1>
-        </div>
-
-        <div className="menu-container">
-          <ul>
-            <li>{}</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-
-);
-};
-
-export default RestaurantMenu;
-
-line 73 <ResOffers
-restroOffer={
-resInfo?.cards[3]?.card?.card?.gridElements?.infoWithStyle?.offers[0]
-.info
-}
-/>
 
  <ul>
             {itemCards.map((item) => (
