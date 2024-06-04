@@ -8,11 +8,14 @@ import Error from "./components/Error.js";
 import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
 import RestaurantMenu from "./components/RestaurantMenu.js";
 import UserContext from "./utils/UserContext.js";
+import { Provider } from "react-redux";
+import appStore from "./utils/appStore.js";
 
 const AppComponent = () => {
   const [userName, setUserName] = useState();
   //authentication logic
   //making api call
+
   useEffect(() => {
     //make api call ,receive name ,password
     const data = {
@@ -22,12 +25,14 @@ const AppComponent = () => {
   }, []);
 
   return (
-    <UserContext.Provider value={{ LoggedInUser: userName }}>
-      <div className="app">
-        <HeaderComponent />
-        <Outlet />
-      </div>
-    </UserContext.Provider>
+    <Provider store={appStore}>
+      <UserContext.Provider value={{ LoggedInUser: userName }}>
+        <div className="app">
+          <HeaderComponent />
+          <Outlet />
+        </div>
+      </UserContext.Provider>
+    </Provider>
   );
 };
 
