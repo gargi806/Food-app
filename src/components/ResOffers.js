@@ -6,7 +6,7 @@ const ResOffers = (props) => {
   //console.log(restroOffer);
 
   return (
-    <div className="border-2 border-gray-400 border-solid rounded-lg  shadow-lg shadow-slate-400 p-2 m-8 text-center w-5/12 ">
+    <div className="border-2 border-gray-400 border-solid rounded-lg  shadow-lg shadow-slate-400 p-2 m-8 text-center w-5/12">
       <div key={offerIds} className="flex justify-center">
         <img className="w-11 h-11 " src={OFFER_LOGO_URL}></img>
 

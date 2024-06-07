@@ -16,7 +16,7 @@ const ResMenuInfo = (props) => {
   } = restroInfo;
 
   return (
-    <div className="flex flex-col md:flex-row justify-between items-center shadow-xl shadow-slate-400 text-center border-2 border-solid border-gray-400 rounded-lg mb-4 p-4">
+    <div className="flex flex-col md:flex-row justify-between items-center shadow-xl shadow-slate-400 text-center border-2 border-solid border-gray-400 rounded-lg m-14 p-4">
       <div className="p-4 m-2">
         <img
           className="rounded-md w-40 h-40 md:w-20 md:h-20 object-cover"

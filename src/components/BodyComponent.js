@@ -40,7 +40,7 @@ const BodyComponent = () => {
   return listOfRestaurants?.length === 0 ? (
     <Shimmer />
   ) : (
-    <div className="body">
+    <div className="m-8">
       <div className="flex justify-center m-4 p-4">
         <div className="m-2 p-2">
           <input
@@ -68,7 +68,7 @@ const BodyComponent = () => {
         </div>
         <div className=" flex justify-center m-2 p-2">
           <button
-            className="bg-blue-400 p-2 md:p-4 w-full md:w-60 rounded-lg text-slate-100"
+            className="bg-blue-400 p-2 md:p-2 w-full md:w-60 rounded-lg text-slate-100"
             onClick={() => {
               const filteredList = listOfRestaurants.filter(
                 (res) => res.info.avgRating > 4
@@ -82,14 +82,14 @@ const BodyComponent = () => {
         </div>
       </div>
 
-      <div className="res-container">
+      <div className="p-4 m-4 flex flex-wrap justify-center rounded-xl">
         {filteredRestaurants?.map((restaurant) => (
           <Link
-            className=" flex-wrap"
+            className="w-full sm:w-1/2 lg:w-1/3 p-2  rounded-xl transition duration-300 transform hover:scale-105"
             key={restaurant.info.id}
             to={"/restaurants/" + restaurant.info.id}
           >
-            {/**if the restaurant is promoted then add a promoted label to it*/}
+            {/** If the restaurant is promoted then add a promoted label to it */}
             {restaurant.info.promoted ? (
               <RestaurantCardPromoted resData={restaurant?.info} />
             ) : (

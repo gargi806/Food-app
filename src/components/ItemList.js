@@ -6,9 +6,9 @@ const ItemList = ({ items }) => {
       {items.map((item) => (
         <div
           key={item.card.info.id}
-          className="p-2 m-2 border-b-2 flex justify-between"
+          className="p-2 m-2 border-b-2 flex flex-col sm:flex-row justify-between"
         >
-          <div>
+          <div className="mb-4 sm:mb-0">
             <div className="font-bold text-lg p-2 m-2">
               <span> {item.card.info.name}</span>
               <span>

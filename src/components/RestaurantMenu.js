@@ -48,7 +48,7 @@ const RestaurantMenu = () => {
 
   console.log(categories);
 
-  const firstTwoOffers = (resOffers ?? []).slice(0, 2);
+  const firstTwoOffers = (resOffers ?? []).slice(0, 3);
 
   return (
     <div className="restaurant-info">

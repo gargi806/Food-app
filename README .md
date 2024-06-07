@@ -428,6 +428,73 @@ Context lets a parent component provide data to the entire tree below it.
 
 use cases: logged in , dark mode
 
+## Redux 👍
+
+     1) redux is not mandatory all the time, when building large scale app where data is a lot then it is needed more.
+
+     2) redux and react are different libraries.
+
+     3) redux is not the only library which is used for state management. There are more like Zustand
+
+     4) redux advantages : large scale app, handling data, managing store, applications become easier to debug,
+
+     5) works with other libraries as well.
+
+     6) redux has 2 libraries: react-redux and redux toolkit.
+
+     7) use redux toolkit: standard way to write redux logic.(RTK)
+
+## Redux store 👍
+
+     1) it is like a big js object with a lot of data in it and it is kept in a central global place.
+
+     2) any component can access this store,can read and write data fron that store, we keep major data of our app in this.
+
+     3) it is completely ok to keep all the data in redux store but just because the data doesnot become clumsy, there is something called slice which is like portions in redux store.
+
+     4) slice is basically a logical separation of data like logic for cart , or user slice , theme slice etc.
+
+     5) cart slice will now hold all the data of cart, initially this cart can be an empty array.
+
+     6) u cannot directly modify slice. there is a process:
+
+      : (to write data) [from add button to cart slice]
+
+          - dispatch action
+          - this action calls a function : function is known as a reducer
+          - this function modifies the cart slice
+
+       : (to read data)[from cart slice to cart on the header to show the number of items present in the cart]
+
+          - we will use a selector and this selector will modify : this phenomenon is known as suscribing to the store.
+
+          - header component is subscribed to the store which means it is in sync with the store ,that is why it is called subscribing to the store.
+
+## Build redux store:
+
+      1) install libraries: @reduxjs/toolkit and react-redux
+
+              npm install @reduxjs/toolkit
+              npm install react-redux
+
+      2) build our store
+
+              build store inside utils called appStore.js
+
+      3) connect our store to our app
+
+               using provider in app.js
+
+
+      4) create a cart slice
+
+                cartSlice file in utils
+
+      5) dispatch(action)
+      6) selector
+
+      2)
+
 ### res menu
 
  <ul>
