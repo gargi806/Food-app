@@ -23,7 +23,7 @@ const ItemList = ({ items }) => {
             <p>{item.card.info.description}</p>
           </div>
           <div>
-            <button className="absolute bg-black text-white shadow-lg rounded-sm my-10 mx-8">
+            <button className="absolute bg-amber-300 text-white shadow-lg rounded-lg my-18 mx-18 p-2">
               Add+
             </button>
             <img

@@ -16,40 +16,35 @@ const ResMenuInfo = (props) => {
   } = restroInfo;
 
   return (
-    <div className="flex justify-evenly shadow-xl shadow-slate-400 text-center border-2 border-solid border-gray-400 rounded-lg mb-4">
-      <div className="p-4 m-2 ">
+    <div className="flex flex-col md:flex-row justify-between items-center shadow-xl shadow-slate-400 text-center border-2 border-solid border-gray-400 rounded-lg mb-4 p-4">
+      <div className="p-4 m-2">
         <img
-          className="rounded-md w-20 h-20 m-3 "
+          className="rounded-md w-40 h-40 md:w-20 md:h-20 object-cover"
           src={CDN_URL + cloudinaryImageId}
+          alt={name}
         />
       </div>
 
-      <div className="pt-6 ">
+      <div className="flex flex-col justify-center items-center pt-4 md:pt-6">
         <p className="text-3xl font-semibold p-2 text-red-800 underline">
           {name}
         </p>
-        <p className="res-cuisines">{cuisines.join(",")}</p>
-        <p className="res-locality">{locality}</p>
+        <p className="text-gray-700">{cuisines.join(", ")}</p>
+        <p className="text-gray-500">{locality}</p>
       </div>
 
-      <hr className="solid"></hr>
-
-      <div className="pt-14 text-lg ">
+      <div className="flex flex-col justify-center items-center pt-4 md:pt-14 text-lg text-gray-700">
         <ul>
-          <li>{[sla.slaString]} </li>
-          <li>{costForTwoMessage} </li>
+          <li>{sla.slaString}</li>
+          <li>{costForTwoMessage}</li>
         </ul>
       </div>
 
-      <hr className="solid"></hr>
-
-      <div className="pt-10 text-lg  text-blue-800">
-        <p className="">
-          {" "}
+      <div className="flex flex-col justify-center items-center pt-4 md:pt-10 text-lg text-amber-500">
+        <p className="flex items-center space-x-1">
           <FaStar />
-          {avgRating}{" "}
+          <span>{avgRating}</span>
         </p>
-
         <p>{totalRatingsString}</p>
       </div>
     </div>

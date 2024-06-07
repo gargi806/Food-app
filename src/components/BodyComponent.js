@@ -45,14 +45,15 @@ const BodyComponent = () => {
         <div className="m-2 p-2">
           <input
             type="text"
-            className="rounded-lg border-2 border-black m-1 p-2"
+            className="rounded-lg border-2 border-black m-1 p-2 md: w-60"
             value={searchText}
+            placeholder="Search restaurants..."
             onChange={(e) => {
               setSearchText(e.target.value);
             }}
           />
           <button
-            className=" m-4 p-2 bg-red-300 w-18 rounded-lg text-white "
+            className=" m-1 md:m-4 p-2 bg-red-300 rounded-lg text-white md:w-24 lg:w-32"
             onClick={() => {
               console.log(searchText);
 
@@ -65,10 +66,9 @@ const BodyComponent = () => {
             Search
           </button>
         </div>
-        <div className=" m-6">
+        <div className=" flex justify-center m-2 p-2">
           <button
-            className="bg-blue-400 p-4 w-60 rounded-lg text-slate-100
-          "
+            className="bg-blue-400 p-2 md:p-4 w-full md:w-60 rounded-lg text-slate-100"
             onClick={() => {
               const filteredList = listOfRestaurants.filter(
                 (res) => res.info.avgRating > 4
