@@ -446,6 +446,8 @@ use cases: logged in , dark mode
 
 ## Redux store 👍
 
+add button (click) --- dispatch ---reducer ---cartslice ---selector --- update cart
+
      1) it is like a big js object with a lot of data in it and it is kept in a central global place.
 
      2) any component can access this store,can read and write data fron that store, we keep major data of our app in this.
@@ -466,9 +468,11 @@ use cases: logged in , dark mode
 
        : (to read data)[from cart slice to cart on the header to show the number of items present in the cart]
 
-          - we will use a selector and this selector will modify : this phenomenon is known as suscribing to the store.
+          - we will use a selector and this selector will modify : this phenomenon is known as suscribing to the store. we will use useSelector hook to get this done.
 
-          - header component is subscribed to the store which means it is in sync with the store ,that is why it is called subscribing to the store.
+          - useDispatch hook is used to dispatch
+
+          - header component is subscribed to the store because of the useSelector which means it is in sync with the store ,that is why it is called subscribing to the store.
 
 ## Build redux store:
 
@@ -493,32 +497,7 @@ use cases: logged in , dark mode
       5) dispatch(action)
       6) selector
 
-      2)
 
-### res menu
-
- <ul>
-            {itemCards ? (
-              itemCards.map((item) => (
-                <li
-                  className="text-lg mb-6 p-2 bg-slate-100 rounded-xl"
-                  key={item.card.info.id}
-                >
-                  <h2 className="font-semibold mb-2 p-2">
-                    {item.card.info.name}
-                  </h2>
-                  <p className="font-thin mb-2 pl-4">
-                    {item.card.info.description}
-                  </p>
-                  <p className="font-normal mb-2 pl-4">
-                    {"Rs - "} {item.card.info.defaultPrice / 100}
-                  </p>
-                </li>
-              ))
-            ) : (
-              <li>No items available</li>
-            )}
-          </ul>
 
 ## use state:
 
@@ -533,37 +512,14 @@ useEffect(() => {
 fetchMenu();
 }, []);
 
-      <div className="veg-box">
-        <label htmlFor="veg-only-chkbox">Veg only</label>
-        &nbsp;
-        <input type="checkbox" id="veg-only-chkbox" onChange={btnVegHandler} />
-      </div>
+## onClick={() => handleCartItem(item)}:
 
- <ul>
-            {itemCards.map((item) => (
-              <li key={item.card.info.id}>{item.card.info.name}</li>
-            ))}
-          </ul>
+This way, handleCartItem will be called with item as an argument when the button is clicked, not before.
 
-making api call:
+## onClick={handleCartItem(item)}:
 
-useEffect(() => {
-fetchData();
-}, []);
+This actually calls the function handleCartItem immediately during the rendering phase, not when the button is clicked.
 
-const fetchData = async () => {
-const data = await fetch(
-"https://www.swiggy.com/dapi/restaurants/list/v5?lat=12.9351929&lng=77.62448069999999&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"
-);
+## onClick={handleCartItem}:
 
-    const json = await data.json();
-
-    console.log(json);
-
-}
-
-const fetchData = async () => {
-const data = await fetch(api);
-}
-
-const json = await data.json();
+This is typically used when the function does not need any arguments or if it can handle the event object directly.
