@@ -497,8 +497,6 @@ add button (click) --- dispatch ---reducer ---cartslice ---selector --- update c
       5) dispatch(action)
       6) selector
 
-
-
 ## use state:
 
 const [resInfo, setResInfo] = useState(null); //data hasn't been fetched yet or is in the process of being fetched.
@@ -523,3 +521,31 @@ This actually calls the function handleCartItem immediately during the rendering
 ## onClick={handleCartItem}:
 
 This is typically used when the function does not need any arguments or if it can handle the event object directly.
+
+## Testing:
+
+developer testing 👍
+
+- unit testing : testing one unit in isolation
+- integration testing :
+- end to end testing
+
+libraries used for testing: react testing library which uses jest
+
+1.  rest testing library - npm install -D @testing-library/react
+2.  install jest - npm i -D jest
+3.  install jest for babel - npm install --save-dev babel-jest @babel/core @babel/preset-env
+4.  configure babel
+5.  configure .parcelrc file to disable default babel transpilation
+6.  jest configuration
+
+command to run test cases : npm run test
+npx jest --init : to execute jest test cases
+
+7. install jsDom library
+
+\*\* \_ \_ is called dunder
+
+test("", ()=>{
+
+})
