@@ -19,7 +19,7 @@ const HeaderComponent = () => {
   console.log(cartItems);
 
   return (
-    <div className="flex flex-col md:flex-row p-2 justify-between bg-green-200 shadow-xl align-middle rounded-md">
+    <div className="flex flex-col md:flex-row p-2 justify-between bg-yellow-200 shadow-xl align-middle rounded-md">
       <div className="flex justify-between items-center w-full md:w-auto">
         <div className="logo-container">
           <Link to="/">
