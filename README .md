@@ -549,3 +549,7 @@ npx jest --init : to execute jest test cases
 test("", ()=>{
 
 })
+
+8. install @babel/preset-react
+9. add this in babel.config.js
+10. install @testing-library/jest-dom
